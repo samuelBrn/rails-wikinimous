@@ -1,0 +1,43 @@
+
+
+
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+        <div class="card-body">
+          <h1 class="card-title text-center mb-4">Créer un nouvel article</h1>
+          <%= form_with(model: @article, local: true, html: { class: 'needs-validation', novalidate: '' }) do |form| %>
+            <% if @article.errors.any? %>
+              <div class="alert alert-danger" role="alert">
+                <h4 class="alert-heading">Please fix the following <%= pluralize(@article.errors.count, "error") %>:</h4>
+                <ul>
+                  <% @article.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+
+            <div class="form-group mb-3">
+              <%= form.label :title, class: 'form-label' %>
+              <%= form.text_field :title, id: :article_title, class: 'form-control', placeholder: 'Titre' %>
+            </div>
+
+            <div class="form-group mb-3">
+              <%= form.label :content, class: 'form-label' %>
+              <%= form.text_area :content, id: :article_content, class: 'form-control', placeholder: 'Contenu', rows: 5 %>
+            </div>
+
+            <div class="text-center">
+              <%= form.submit "Créer l'article", class: 'btn btn-primary' %>
+            </div>
+          <% end %>
+
+          <%= link_to 'Retour aux articles', articles_path, class: 'btn btn-link' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

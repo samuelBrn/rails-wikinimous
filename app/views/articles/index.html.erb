@@ -1,0 +1,17 @@
+<div class="container mt-5">
+  <h2 class="mb-4">Liste des Articles</h2>
+
+  <%= link_to 'Créer un nouvel article', new_article_path, class: 'btn btn-primary mb-3' %>
+
+  <% @articles.each do |article| %>
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title"><%= article.title %></h5>
+        <p class="card-text"><%= truncate(article.content, length: 100) %></p>
+        <%= link_to 'Lire plus', article_path(article), class: 'btn btn-secondary' %>
+        <%= link_to 'Éditer', edit_article_path(article), class: 'btn btn-outline-primary' %>
+        <%= link_to 'Supprimer', article_path(article), method: :delete, data: { confirm: 'Êtes-vous sûr ?' }, class: 'btn btn-danger' %>
+      </div>
+    </div>
+  <% end %>
+</div>
